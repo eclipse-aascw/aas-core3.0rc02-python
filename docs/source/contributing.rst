@@ -50,12 +50,15 @@ Pre-commit Checks
 =================
 
 Before you can run pre-commit checks, you need to all the development dependencies.
+The pinned aas-core-codegen has requirement specifiers in its ``setup.py`` which current pip, setuptools and wheel reject.
+So first install older versions of these, and then install without build isolation, so that pip builds with them.
 Run in your virtual environment:
 
 .. code-block::
 
+    python -m pip install --upgrade "pip<24.1" "setuptools<67" "wheel<0.40"
     pip3 install --editable .
-    pip3 install -r requirements-dev.txt
+    pip3 install --no-build-isolation -r requirements-dev.txt
 
 Now you can execute the checks (from the repository root):
 

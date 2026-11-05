@@ -9,7 +9,11 @@ on:
 
 jobs:
   Only-test:
-    runs-on: ubuntu-latest
+    # NOTE (aaronzi, 2026-11-05):
+    # ubuntu-latest (26.04) does not provide Python 3.7, 3.8 and 3.9 anymore, so we
+    # pin the runner to keep testing all the Python versions we support. Python 3.7
+    # is only built up to ubuntu-22.04, the others are still built for ubuntu-24.04.
+    runs-on: ${{ matrix.python-version == '3.7' && 'ubuntu-22.04' || 'ubuntu-24.04' }}
     strategy:
       matrix:
         python-version: ['3.7', '3.8', '3.9', '3.11']
@@ -18,7 +22,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -50,16 +54,21 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
+        # NOTE (aaronzi, 2026-11-05):
+        # The pinned aas-core-codegen (44945c18) has specifiers like `pydocstyle>=2.1.1<3`
+        # in its setup.py. pip >= 24.1, setuptools >= 67 and wheel >= 0.40 reject them.
+        # We cap these three and build without isolation, so that pip builds the package
+        # with the capped setuptools and wheel instead of fetching the latest ones.
         run: |
-          python3 -m pip install --upgrade pip
+          python3 -m pip install --upgrade "pip<24.1" "setuptools<67" "wheel<0.40"
           pip3 install --upgrade coveralls
           pip3 install -e .
-          pip3 install -r requirements-dev.txt
+          pip3 install --no-build-isolation -r requirements-dev.txt
 
       - name: Run all checks
         run: |

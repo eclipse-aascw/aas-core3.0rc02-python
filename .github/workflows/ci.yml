@@ -9,7 +9,11 @@ on:
 
 jobs:
   Only-test:
-    runs-on: ubuntu-latest
+    # NOTE (aaronzi, 2026-11-05):
+    # ubuntu-latest (26.04) does not provide Python 3.7, 3.8 and 3.9 anymore, so we
+    # pin the runner to keep testing all the Python versions we support. Python 3.7
+    # is only built up to ubuntu-22.04, the others are still built for ubuntu-24.04.
+    runs-on: ${{ matrix.python-version == '3.7' && 'ubuntu-22.04' || 'ubuntu-24.04' }}
     strategy:
       matrix:
         python-version: ['3.7', '3.8', '3.9', '3.11']
@@ -18,7 +22,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -50,7 +54,7 @@ jobs:
       - uses: actions/checkout@master
 
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
 

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 aas-core3.0rc02-python AUTHORS
+#
+# SPDX-License-Identifier: MIT
+
 """Provide common functionality for XML de-serialization."""
 import io
 import xml.etree.ElementTree as ET

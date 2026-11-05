@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2022 aas-core3.0rc02-python AUTHORS
+#
+# SPDX-License-Identifier: MIT
+
 """Generate the test code for the ``Descend`` methods and ``VisitorThrough``."""
 
 import io

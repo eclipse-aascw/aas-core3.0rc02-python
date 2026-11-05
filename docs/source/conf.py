@@ -1,5 +1,9 @@
 # -*- coding: utf-8 -*-
 #
+# SPDX-FileCopyrightText: 2022 aas-core3.0rc02-python AUTHORS
+#
+# SPDX-License-Identifier: MIT
+#
 # Configuration file for the Sphinx documentation builder.
 #
 # This file does only contain a selection of the most common options. For a

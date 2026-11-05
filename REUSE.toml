@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2022 aas-core3.0rc02-python AUTHORS
+#
+# SPDX-License-Identifier: MIT
+
+version = 1
+
+# Prose and metadata where a header would end up in the rendered output
+# (e.g., README shown on PyPI, the documentation) or which can not carry
+# a comment.
+[[annotations]]
+path = [
+    "AUTHORS",
+    "README.rst",
+    "docs/**/*.rst",
+    "docs/**/*.md",
+    "aas_core3_rc02/py.typed",
+    ".idea/**",
+]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 aas-core3.0rc02-python AUTHORS"
+SPDX-License-Identifier = "MIT"
+
+# Test data and the recorded test outputs are generated and compared
+# byte-by-byte, and JSON can not carry a comment.
+[[annotations]]
+path = "test_data/**"
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2022 aas-core3.0rc02-python AUTHORS"
+SPDX-License-Identifier = "MIT"

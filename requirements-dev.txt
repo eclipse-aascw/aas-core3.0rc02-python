@@ -1,9 +1,14 @@
+# SPDX-FileCopyrightText: 2022 aas-core3.0rc02-python AUTHORS
+#
+# SPDX-License-Identifier: MIT
+
 black==22.10.0
 mypy==0.982
 pylint==2.15.4
 coverage>=6.5.0,<7
 pyinstaller>=5,<6
 twine
+reuse==6.3.0
 aas-core-meta@git+https://github.com/aas-core-works/aas-core-meta@e3707bf#egg=aas-core-meta
 aas-core-codegen@git+https://github.com/aas-core-works/aas-core-codegen@44945c18#egg=aas-core-codegen
 docutils>=0.18.1,<0.20
